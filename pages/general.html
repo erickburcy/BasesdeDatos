@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketing: General</title>
+  
+  <style>
+    body {
+      font-family: 'Times New Roman';
+      background-color: #f7f7f7;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .table-container {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #fff;
+    }
+
+    .placeholder {
+      font-style: italic;
+      color: #999;
+    }
+  </style>
+  <script type="text/javascript" src="scripts/buildTable.js"></script>
+  <script type="text/javascript" src="scripts/queryGraphQL.js"></script>
+  <script type="text/javascript" src="scripts/generalHandling.js"></script>
+</head>
+
+<body>
+  <h1>General</h1>
+
+  <div class="container">
+    <form id="jsonForm" data-table="tier">
+      <h2>JSON:</h2>
+      <textarea name="json" id="json" cols="38" rows="25"></textarea><br /><br />
+      <button type="submit">Query</button>
+    </form>
+
+    <div id="table" class="table-container">
+      <div class="placeholder">No table generated yet</div>
+    </div>
+
+    <form id="responseForm" data-table="tier">
+      <h2>Response:</h2>
+      <textarea name="response" id="response" cols="38" rows="30" disabled></textarea><br /><br />
+    </form>
+  </div>
+</body>
+
+</html>

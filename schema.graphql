@@ -1,0 +1,213 @@
+type Query {
+	readCiclo(id: Int): [Ciclo]
+	readClient(id: Int): [Client]
+	readPost(id: Int): [Post]
+	readNetworks(id: Int): [Networks]
+	readTier(id: Int): [Tier]
+	readLocation(id: Int): [Location]
+	readUser(id: Int): [User]
+	readUserNetworks(id: Int): [UserNetworks]
+}
+
+type Mutation {
+	createCiclo(input: CicloInput!): Ciclo!
+	deleteCiclo(id: Int!):Ciclo!
+	updateCiclo(id: Int!,input: CicloInput!): Ciclo!
+
+	createClient(input: ClientInput!): Client!
+	deleteClient(id: Int!): Client!
+	updateClient(id: Int!, input: ClientInput!): Client!
+
+	createPost(input: PostInput!): Post!
+	deletePost(id: Int!): Post!
+	updatePost(id: Int!, input: PostInput!): Post!
+
+	createNetworks(input: NetworksInput!): Networks!
+	deleteNetworks(id: Int!): Networks!
+	updateNetworks(id: Int!, input: NetworksInput!): Networks!
+
+	createTier(input: TierInput!): Tier!
+	deleteTier(id: Int!): Tier!
+	updateTier(id: Int!, input: TierInput!): Tier!
+
+	createLocation(input: LocationInput!): Location!
+	deleteLocation(id: Int!): Location!
+	updateLocation(id: Int!, input: LocationInput!): Location!
+	
+	createUser(input: UserInput!): User!
+	deleteUser(id: Int!): User!
+	updateUser(id: Int!, input: UserInput!): User!
+
+	createUserNetworks(input: UserNetworksInput!): UserNetworks!
+	deleteUserNetworks(id: Int!): UserNetworks!
+	updateUserNetworks(id: Int!, input: UserNetworksInput!): UserNetworks!
+}
+type Ciclo{
+	id: ID
+	fkClient: Int
+	client: Client
+}
+
+input CicloInput{
+	fkClient: Int
+}
+
+type Client {
+	id: ID
+	username: String
+	passwordHash: String
+	membershipNumber: String
+	email: String
+	phone: String
+	fkTier: Int
+	tier: Tier	
+	fkCiclo: Int
+	ciclo: Ciclo
+}
+
+input ClientInput {
+	username: String
+	passwordHash: String
+	membershipNumber: String
+	email: String
+	phone: String
+	fkTier: Int	
+	fkCiclo: Int
+}
+
+type Post {
+	id: ID
+	fkNetworks: Int
+	networks: Networks
+	fkClient: Int
+	client: Client
+	postdata: String
+}
+
+input PostInput {
+	fkNetworks: Int
+	fkClient: Int
+	postdata: String
+}
+
+type Networks {
+	id: ID
+	networkname: String
+}
+
+input NetworksInput {
+	networkname: String
+}
+
+type Interactions {
+	id: ID
+	reaction: String
+	fkUser: Int
+	user: User
+}
+
+input InteractionsInput {
+	reaction: String
+	fkUser: Int
+}
+
+type Tier {
+	id: ID
+	tierdata: String
+}
+
+input TierInput {
+	tierdata: String
+}
+
+type InteractionsClientNetworks {
+	id: ID
+	fkInteractions: Int
+	interactions: Interactions
+	fkPost: Int
+	post: Post
+}
+
+input InteractionsClientNetworksInput{
+	fkInteractions: Int
+	fkPost: Int
+}
+
+type Coments{
+	id: ID
+	dateTime: String
+	feeling: Float
+	comentData: String
+	fkPost: Int
+	post: Post
+	fkUser: Int
+	user: User
+}
+input ComentsInput{
+	dateTime: String
+	feeling: Float
+	comentData: String
+	fkPost: Int
+	fkUser: Int
+}
+type PostTrends{
+	id: ID
+	fkPost: Int
+	post: Post
+	fkTrends: Int
+	trends: Trends
+}
+
+input PostTrendsInput{
+	fkPost: Int
+	fkTrends: Int
+}
+
+type Location{
+	id: ID
+	place: String
+}
+input LocationInput{
+	place: String
+}
+type User{
+	id: ID
+	username: String
+	fkLocation:Int
+	location: Location
+}
+input UserInput{
+	username: String
+	fkLocation:Int
+}
+type UserNetworks{
+	id: ID
+	fkUser: Int
+	user: User
+	fkNetworks: Int
+	networks: Networks
+}
+input UserNetworksInput{
+	fkUser: Int
+	fkNetworks: Int
+}
+type ComentTrends{
+	id: ID
+	fkTrends: Int
+	trends: Trends
+	fkNetworks: Int
+	networks: Networks
+}
+input ComentTrendsInput{
+	fkTrends: Int
+	fkNetworks: Int
+}
+type Trends{
+	id: ID
+	word: String
+	value: Int
+}
+input TrendsInput{
+	word: String
+	value: Int
+}
